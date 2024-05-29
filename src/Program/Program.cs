@@ -9,7 +9,7 @@ namespace CompAndDel
         static void Main(string[] args)
         {
             // Descomentar por partes.
-            //Parte1();
+            Parte1();
             //Parte2();
             //Parte3();
             //Parte4();
@@ -21,9 +21,9 @@ namespace CompAndDel
             PipeSerial pipeSerial1 = new PipeSerial(new FilterNegative(), pipeNull);
             PipeSerial pipeSerial2 = new PipeSerial(new FilterGreyscale(), pipeSerial1);
             PictureProvider provider = new PictureProvider();
-            IPicture picture = provider.GetPicture(@"beer.jpg");
+            IPicture picture = provider.GetPicture(@"D:\ProgramasC#\Comp\src\Program\beer.jpg");
             IPicture modifiedImage = pipeSerial2.Send(picture);
-            provider.SavePicture(modifiedImage, @"modifiedBeer1.jpg");
+            provider.SavePicture(modifiedImage, @"D:\ProgramasC#\Comp\src\Program\modifiedBeer1.jpg");
         }
 
         public static void Parte2()
@@ -31,13 +31,13 @@ namespace CompAndDel
         
             PictureProvider provider = new PictureProvider();
             PipeNull pipeNull = new PipeNull();
-            PipeSerial pipeSerialE = new(new FilterPersister(@"luke-final2.jpg"), pipeNull);
-            PipeSerial pipeSerialD = new(new FilterNegative(), pipeSerialE);
-            PipeSerial pipeSerialC = new(new FilterPersister(@"luke-intermediate2.jpg"), pipeSerialD);
-            PipeSerial pipeSerialB = new(new FilterGreyscale(), pipeSerialC);
-            PipeSerial pipeSerialA = new(new FilterPersister(@"luke-initial2.jpg"), pipeSerialB);
+            PipeSerial pipeSerial5 = new(new FilterNull(@"luke-final2.jpg"), pipeNull);
+            PipeSerial pipeSerial4 = new(new FilterNegative(), pipeSerial5);
+            PipeSerial pipeSerial3 = new(new FilterNull(@"luke-intermediate2.jpg"), pipeSerial4);
+            PipeSerial pipeSerial2 = new(new FilterGreyscale(), pipeSerial3);
+            PipeSerial pipeSerial1 = new(new FilterNull(@"luke-initial2.jpg"), pipeSerial2);
             IPicture picture = provider.GetPicture(@"luke.jpg");
-            pipeSerialA.Send(picture);
+            pipeSerial1.Send(picture);
         }
         public static void Parte3()
         {
@@ -45,14 +45,14 @@ namespace CompAndDel
 
             PipeNull pipeNull = new PipeNull();
 
-            PipeSerial pipeSerialE = new(new FilterTwitter("Birra3", @"beer-final3.jpg"), pipeNull);
-            PipeSerial pipeSerialD = new(new FilterNegative(), pipeSerialE);
-            PipeSerial pipeSerialC = new(new FilterTwitter("Birra2", @"beer-intermediate3.jpg"), pipeSerialD);
-            PipeSerial pipeSerialB = new(new FilterGreyscale(), pipeSerialC);
-            PipeSerial pipeSerialA = new(new FilterTwitter("Birra1", @"beer-initial3.jpg"), pipeSerialB);
+            PipeSerial pipeSerial5 = new(new FilterTwitter("Birra3", @"beer-final3.jpg"), pipeNull);
+            PipeSerial pipeSerial4 = new(new FilterNegative(), pipeSerial5);
+            PipeSerial pipeSerial3 = new(new FilterTwitter("Birra2", @"beer-intermediate3.jpg"), pipeSerial4);
+            PipeSerial pipeSerial2 = new(new FilterGreyscale(), pipeSerial3);
+            PipeSerial pipeSerial1 = new(new FilterTwitter("Birra1", @"beer-initial3.jpg"), pipeSerial2);
 
             IPicture picture = provider.GetPicture(@"beer.jpg");
-            pipeSerialA.Send(picture);
+            pipeSerial1.Send(picture);
         }
 
         public static void Parte4()

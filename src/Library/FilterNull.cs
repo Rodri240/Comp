@@ -1,12 +1,12 @@
 namespace CompAndDel.Filters
 {
-    public class FilterPersister : IFilter
+    public class FilterNull : IFilter
     {
         public readonly string ImagePath;
 
         private readonly PictureProvider PictureSaver;
 
-        public FilterPersister(string imagePath)
+        public FilterNull(string imagePath)
         {
             this.PictureSaver = new PictureProvider();
             this.ImagePath = imagePath;

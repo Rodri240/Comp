@@ -10,7 +10,7 @@ namespace CompAndDel.Filters
         private readonly string Text;
         
      
-        private readonly FilterPersister FilterPersister;
+        private readonly FilterNull FilterNull;
 
         private readonly TwitterImage TwitterImage;
 
@@ -18,7 +18,7 @@ namespace CompAndDel.Filters
         {
             this.TwitterImage = new TwitterImage();
             this.Text = textToPublish;
-            this.FilterPersister = new FilterPersister(imagePath);
+            this.FilterNull = new FilterNull(imagePath);
         }
 
         public IPicture Filter(IPicture image)
@@ -31,12 +31,12 @@ namespace CompAndDel.Filters
      
         private void PublishPicture()
         {
-            Console.WriteLine(this.TwitterImage.PublishToTwitter(this.Text, this.FilterPersister.ImagePath));
+            Console.WriteLine(this.TwitterImage.PublishToTwitter(this.Text, this.FilterNull.ImagePath));
         }
 
         private IPicture SavePicture(IPicture image)
         {
-            return this.FilterPersister.Filter(image);
+            return this.FilterNull.Filter(image);
         }
     }
 }

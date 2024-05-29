@@ -6,12 +6,12 @@ namespace CompAndDel.Filters
     {
         private readonly CognitiveFace CognitiveFace;
 
-        private readonly FilterPersister FilterPersister;  
+        private readonly FilterNull FilterNull;  
 
         public FilterConditional(string imagePath)
         {
             this.CognitiveFace = new CognitiveFace(false, null);
-            this.FilterPersister = new FilterPersister(imagePath);
+            this.FilterNull = new FilterNull(imagePath);
         }
 
         public IPicture Filter(IPicture image)
@@ -22,14 +22,14 @@ namespace CompAndDel.Filters
 
         public bool HasFace()
         {
-            this.CognitiveFace.Recognize(this.FilterPersister.ImagePath); 
+            this.CognitiveFace.Recognize(this.FilterNull.ImagePath); 
             bool result = this.CognitiveFace.FaceFound;
             return result;
         }
 
         private IPicture SavePicture(IPicture image)
         {
-            return this.FilterPersister.Filter(image);
+            return this.FilterNull.Filter(image);
         }
     }
 }
